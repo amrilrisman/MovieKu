@@ -1,0 +1,50 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "adult": false,
+            "backdrop_path": "/tGwO4xcBjhXC0p5qlkw37TrH6S6.jpg",
+            "genre_ids": [
+                16,
+                28,
+                12,
+                35,
+                10751,
+                14
+            ],
+            "id": 315162,
+            "original_language": "en",
+            "original_title": "Puss in Boots: The Last Wish",
+            "overview": "Puss in Boots discovers that his passion for adventure has taken its toll: He has burned through eight of his nine lives, leaving him with only one life left. Puss sets out on an epic journey to find the mythical Last Wish and restore his nine lives.",
+            "popularity": 6689.647,
+            "poster_path": "/kuf6dutpsT0vSVehic3EZIqkOBt.jpg",
+            "release_date": "2022-12-07",
+            "title": "Puss in Boots: The Last Wish",
+            "video": false,
+            "vote_average": 8.6,
+            "vote_count": 2504
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/q2fY4kMXKoGv4CQf310MCxpXlRI.jpg",
+            "genre_ids": [
+                878,
+                27,
+                35
+            ],
+            "id": 536554,
+            "original_language": "en",
+            "original_title": "M3GAN",
+            "overview": "A brilliant toy company roboticist uses artificial intelligence to develop M3GAN, a life-like doll programmed to emotionally bond with her newly orphaned niece. But when the doll's programming works too well, she becomes overprotective of her new friend with terrifying results.",
+            "popularity": 6474.848,
+            "poster_path": "/rxDPzExeovcBZY2IVWdYs87AzVE.jpg",
+            "release_date": "2022-01-04",
+            "title": "M3GAN",
+            "video": false,
+            "vote_average": 7.2,
+            "vote_count": 507
+        }
+    ],
+    "total_pages": 36792,
+    "total_results": 735838
+}
