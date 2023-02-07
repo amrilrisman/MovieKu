@@ -18,7 +18,7 @@ class DetailMovieBloc extends Bloc<DetailMovieEvent, DetailMovieState> {
     final result = await useCase.execute(id: event.id);
 
     result.fold(
-      (failure) => emit(DetailMovieError(DetailMovieModels.fromJson({}))),
+      (failure) => emit(const DetailMovieError('Server error')),
       (data) => emit(DetailMovieHasData(data)),
     );
   }

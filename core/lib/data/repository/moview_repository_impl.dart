@@ -24,7 +24,7 @@ class MovieRepositoryImplementation extends MovieRepository {
   }
 
   @override
-  Future<Either<Failure, DetailMovie>> dataMovieById(String id) async {
+  Future<Either<Failure, DetailMovieModels>> dataMovieById(String id) async {
     try {
       final result = await movieRemoteSource.detailById(id: id);
       return Right(result);
@@ -36,7 +36,7 @@ class MovieRepositoryImplementation extends MovieRepository {
   }
 
   @override
-  Future<Either<Failure, MovieModels>> getPopular() async {
+  Future<Either<Failure, List<MovieModels>>> getPopular() async {
     try {
       final result = await movieRemoteSource.getPopular();
       return Right(result);

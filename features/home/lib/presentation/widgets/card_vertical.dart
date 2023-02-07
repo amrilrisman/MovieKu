@@ -2,7 +2,14 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class CardVertical extends StatelessWidget {
-  const CardVertical({Key? key}) : super(key: key);
+  final String title, sipnosis, date, thumbnail;
+  const CardVertical(
+      {Key? key,
+      required this.title,
+      required this.sipnosis,
+      required this.date,
+      required this.thumbnail})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +21,19 @@ class CardVertical extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
                 image: DecorationImage(
                     image: NetworkImage(
-                      'https://akcdn.detik.net.id/visual/2020/07/16/kimetsu-no-yaiba_169.jpeg',
+                      ApiUrl.baseImage + thumbnail,
                     ),
+                    // 'https://akcdn.detik.net.id/visual/2020/07/16/kimetsu-no-yaiba_169.jpeg',),
                     fit: BoxFit.fill),
               ),
             ),
@@ -35,11 +44,24 @@ class CardVertical extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FittedBox(
-                  child: Text('Kimetsu No Yaiba',
-                      style: Theme.of(context).textTheme.titleLarge),
+                Text(title,
+                    maxLines: 1, style: Theme.of(context).textTheme.titleLarge),
+                const SizedBox(
+                  height: 4,
                 ),
-                Text('Action', style: Theme.of(context).textTheme.caption)
+                FittedBox(
+                  child: Text(date, style: Theme.of(context).textTheme.caption),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Expanded(
+                  child: Text(sipnosis,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(fontWeight: FontWeight.w400)),
+                ),
               ],
             ),
           ))

@@ -12,9 +12,9 @@ class DetailMovieInitial extends DetailMovieState {}
 class DetailMovieLoading extends DetailMovieState {}
 
 class DetailMovieError extends DetailMovieState {
-  final DetailMovieModels data;
+  final String error;
 
-  const DetailMovieError(this.data);
+  const DetailMovieError(this.error);
 }
 
 class DetailMovieHasData extends DetailMovieState {

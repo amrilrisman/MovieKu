@@ -6,6 +6,6 @@ import 'package:dartz/dartz.dart';
 
 abstract class MovieRepository {
   Future<Either<Failure, GendreModels>> getGendres();
-  Future<Either<Failure, MovieModels>> getPopular();
-  Future<Either<Failure, DetailMovie>> dataMovieById(String id);
+  Future<Either<Failure, List<MovieModels>>> getPopular();
+  Future<Either<Failure, DetailMovieModels>> dataMovieById(String id);
 }

@@ -2,12 +2,11 @@ import 'package:core/core.dart';
 import 'package:core/data/models/detail_movie_model.dart';
 import 'package:core/data/models/gendres_model.dart';
 import 'package:core/data/models/movie_model.dart';
-import 'package:flutter/animation.dart';
 
 abstract class MovieRemoteSource {
   Future<GendreModels> getGendres();
-  Future<MovieModels> getPopular();
-  Future<DetailMovie> detailById({required String id});
+  Future<List<MovieModels>> getPopular();
+  Future<DetailMovieModels> detailById({required String id});
 }
 
 class MovieRemoteSourceImplementation extends MovieRemoteSource {
@@ -28,23 +27,25 @@ class MovieRemoteSourceImplementation extends MovieRemoteSource {
   }
 
   @override
-  Future<DetailMovie> detailById({required String id}) async {
+  Future<DetailMovieModels> detailById({required String id}) async {
     try {
       final result = await serviceApi.get(
           url: '${ApiUrl.detilById}/$id',
           parameter: {'api_key': ApiUrl.keyApi});
-      return DetailMovie.fromJson(result);
+      return DetailMovieModels.fromJson(result);
     } catch (e) {
       throw ServerException();
     }
   }
 
   @override
-  Future<MovieModels> getPopular() async {
+  Future<List<MovieModels>> getPopular() async {
     try {
-      final result = await serviceApi.get(
+      final Map<String, dynamic> result = await serviceApi.get(
           url: ApiUrl.popularMoview, parameter: {'api_key': ApiUrl.keyApi});
-      return MovieModels.fromJson(result['results']);
+      final List data = result['results'];
+
+      return data.map((e) => MovieModels.fromJson(e)).toList();
     } catch (e) {
       throw ServerException();
     }

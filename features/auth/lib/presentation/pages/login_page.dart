@@ -109,13 +109,6 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
             ),
-            Text(
-              'OR',
-              style: Theme.of(context)
-                  .textTheme
-                  .caption!
-                  .copyWith(color: subtitleColor),
-            ),
             BlocBuilder<AuthUserBloc, AuthUserState>(builder: (context, state) {
               if (state is AuthUserLoading) {
                 return const CupertinoActivityIndicator(

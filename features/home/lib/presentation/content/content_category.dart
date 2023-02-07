@@ -1,10 +1,10 @@
 import 'package:core/core.dart';
+import 'package:core/utils/route_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home/presentation/bloc/data_genres_bloc.dart';
+import 'package:home/presentation/bloc/filter_genre_bloc.dart';
 import 'package:home/presentation/widgets/card_category.dart';
 import 'package:home/presentation/widgets/card_vertical.dart';
 
@@ -14,6 +14,7 @@ class ContentCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<DataGenresBloc>().add(OnGetDataGenres());
+    context.read<FilterGenreBloc>().add(OnDefaultGendre());
     return Column(
       children: [
         ListTile(
@@ -51,8 +52,15 @@ class ContentCategory extends StatelessWidget {
                 padding: marginRight,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return CardCategory(
-                    title: state.data.genres[index].name,
+                  return InkWell(
+                    onTap: () {
+                      context
+                          .read<FilterGenreBloc>()
+                          .add(OnSelectedGendre(state.data.genres[index].id));
+                    },
+                    child: CardCategory(
+                      title: state.data.genres[index].name,
+                    ),
                   );
                 },
               );
@@ -64,16 +72,41 @@ class ContentCategory extends StatelessWidget {
           height: 10,
         ),
         SizedBox(
-          height: 220,
-          child: ListView.builder(
-            itemCount: 10,
-            padding: marginRight,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return const CardVertical();
-            },
-          ),
-        ),
+            height: 220,
+            child: BlocBuilder<FilterGenreBloc, FilterGenreState>(
+                builder: (context, state) {
+              if (state is FilterGenreLoading) {
+                return const Center(
+                  child: CupertinoActivityIndicator(
+                    radius: 12,
+                    color: primaryColor,
+                  ),
+                );
+              } else if (state is FilterGenreHasData) {
+                return ListView.builder(
+                  itemCount: state.data.length > 10 ? 5 : state.data.length,
+                  padding: marginRight,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, RouteName.detailMovie,
+                            arguments: state.data[index].id);
+                      },
+                      child: CardVertical(
+                        date: state.data[index].releaseDate.toString(),
+                        sipnosis: state.data[index].overview,
+                        thumbnail: state.data[index].posterPath,
+                        title: state.data[index].title,
+                      ),
+                    );
+                  },
+                );
+              } else if (state is FilterGenreError) {
+                return const Center(child: Text('Error Data'));
+              }
+              return const SizedBox();
+            })),
       ],
     );
   }

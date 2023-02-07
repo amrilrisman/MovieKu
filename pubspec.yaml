@@ -29,17 +29,14 @@ environment:
 dependencies:
   auth:
     path: features/auth
+  detail_movie:
+    path: features/detail_movie
   core:
     path: core
-  cupertino_icons: ^1.0.2
-  dartz: ^0.10.1
-  equatable: ^2.0.5
-  flutter:
-    sdk: flutter
-  flutter_bloc: ^8.1.1
-  get_it: ^7.2.0
   home:
     path: features/home
+  despendency:
+    path: despendency
 
 dev_dependencies:
   flutter_lints: ^2.0.0

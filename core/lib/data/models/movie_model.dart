@@ -4,7 +4,6 @@ class MovieModels {
     required this.backdropPath,
     required this.genreIds,
     required this.id,
-    required this.originalLanguage,
     required this.originalTitle,
     required this.overview,
     required this.popularity,
@@ -20,7 +19,6 @@ class MovieModels {
   String backdropPath;
   List<int> genreIds;
   int id;
-  OriginalLanguage originalLanguage;
   String originalTitle;
   String overview;
   double popularity;
@@ -36,8 +34,6 @@ class MovieModels {
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
-        originalLanguage:
-            originalLanguageValues.map[json["original_language"]]!,
         originalTitle: json["original_title"],
         overview: json["overview"],
         popularity: json["popularity"]?.toDouble(),
@@ -54,7 +50,6 @@ class MovieModels {
         "backdrop_path": backdropPath,
         "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
         "id": id,
-        "original_language": originalLanguageValues.reverse[originalLanguage],
         "original_title": originalTitle,
         "overview": overview,
         "popularity": popularity,
@@ -67,15 +62,6 @@ class MovieModels {
         "vote_count": voteCount,
       };
 }
-
-enum OriginalLanguage { EN, NO, DA, IT }
-
-final originalLanguageValues = EnumValues({
-  "da": OriginalLanguage.DA,
-  "en": OriginalLanguage.EN,
-  "it": OriginalLanguage.IT,
-  "no": OriginalLanguage.NO
-});
 
 class EnumValues<T> {
   Map<String, T> map;

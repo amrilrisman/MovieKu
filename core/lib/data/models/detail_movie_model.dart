@@ -1,18 +1,10 @@
 // To parse this JSON data, do
 //
-//     final detailMovie = detailMovieFromJson(jsonString);
 
-import 'dart:convert';
+import 'package:core/domain/entity/genre_entity.dart';
 
-import '../../domain/entity/genre_entity.dart';
-
-DetailMovie detailMovieFromJson(String str) =>
-    DetailMovie.fromJson(json.decode(str));
-
-String detailMovieToJson(DetailMovie data) => json.encode(data.toJson());
-
-class DetailMovie {
-  DetailMovie({
+class DetailMovieModels {
+  DetailMovieModels({
     required this.adult,
     required this.backdropPath,
     required this.belongsToCollection,
@@ -66,8 +58,9 @@ class DetailMovie {
   double voteAverage;
   int voteCount;
 
-  factory DetailMovie.fromJson(Map<String, dynamic> json) => DetailMovie(
-        adult: json["adult"],
+  factory DetailMovieModels.fromJson(Map<String, dynamic> json) =>
+      DetailMovieModels(
+        adult: json["adult"] ?? false,
         backdropPath: json["backdrop_path"],
         belongsToCollection:
             BelongsToCollection.fromJson(json["belongs_to_collection"]),

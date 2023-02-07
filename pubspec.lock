@@ -64,20 +64,27 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.5"
   dartz:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: dartz
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.1"
+  despendency:
+    dependency: "direct main"
+    description:
+      path: despendency
+      relative: true
+    source: path
+    version: "0.0.1"
+  detail_movie:
+    dependency: "direct main"
+    description:
+      path: "features/detail_movie"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   dio:
     dependency: transitive
     description:
@@ -86,7 +93,7 @@ packages:
     source: hosted
     version: "4.0.6"
   equatable:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: equatable
       url: "https://pub.dartlang.org"
@@ -114,12 +121,12 @@ packages:
     source: hosted
     version: "6.1.4"
   flutter:
-    dependency: "direct main"
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
   flutter_bloc:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
@@ -143,7 +150,7 @@ packages:
     source: sdk
     version: "0.0.0"
   get_it:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: get_it
       url: "https://pub.dartlang.org"

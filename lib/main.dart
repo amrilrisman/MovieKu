@@ -2,11 +2,14 @@ import 'package:auth/presentation/bloc/auth_user_bloc.dart';
 import 'package:auth/presentation/pages/login_page.dart';
 import 'package:auth/presentation/pages/splash_screen.dart';
 import 'package:core/core.dart';
+import 'package:detail_movie/presentation/bloc/detail_movie_bloc.dart';
+import 'package:detail_movie/presentation/pages/detail_movie_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home/home.dart';
 import 'package:home/presentation/bloc/data_genres_bloc.dart';
-import 'package:home/presentation/bloc/data_movie_bloc.dart';
+import 'package:home/presentation/bloc/filter_genre_bloc.dart';
+import 'package:home/presentation/bloc/popular_movie_bloc.dart';
 import 'package:movieku_apps/injections.dart' as di;
 
 void main() async {
@@ -26,8 +29,12 @@ class MyApp extends StatelessWidget {
             create: (context) => di.locator<AuthUserBloc>()),
         BlocProvider<DataGenresBloc>(
             create: (context) => di.locator<DataGenresBloc>()),
-        BlocProvider<DataMovieBloc>(
-            create: (context) => di.locator<DataMovieBloc>()),
+        BlocProvider<PopularMovieBloc>(
+            create: (context) => di.locator<PopularMovieBloc>()),
+        BlocProvider<FilterGenreBloc>(
+            create: (context) => di.locator<FilterGenreBloc>()),
+        BlocProvider<DetailMovieBloc>(
+            create: (context) => di.locator<DetailMovieBloc>()),
       ],
       child: MaterialApp(
         home: const SplashScreenPage(),
@@ -68,6 +75,9 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => LoginPage());
             case RouteName.homePage:
               return MaterialPageRoute(builder: (_) => const HomePage());
+            case RouteName.detailMovie:
+              return MaterialPageRoute(
+                  builder: (_) => const DetailMoviePages(), settings: settings);
 
             default:
               return MaterialPageRoute(builder: (_) {
